@@ -35,4 +35,32 @@ return [
         ],
     ],
 
+    '2chat' => [
+        'api_key' => env('2CHAT_API_KEY'),
+        'from_number' => env('2CHAT_FROM_NUMBER'),
+    ],
+
+    'discord' => [
+        'source_url' => env('DISCORD_SOURCE_URL'),
+    ],
+    'webhook' => [
+        'url' => env('WEBHOOK_URL'),
+        'auth' => env('WEBHOOK_AUTH'),
+    ],
+    'content_moderator' => [
+        'url' => env('CONTENT_MODERATOR_URL'),
+        'key' => env('CONTENT_MODERATOR_KEY'),
+    ],
+    'frequency' => [
+        'url' => env('FREQUENCY_URL'),
+        'auth' => env('FREQUENCY_AUTH'),
+    ],
+    'dnc' => [
+        'url' => env('DNC_URL'),
+    ],
+
+    'email_check' => [
+        'url' => env('EMAIL_CHECK_URL', 'https://janicez87.sg-host.com/check_time_email_round.php'),
+    ],
+    
 ];

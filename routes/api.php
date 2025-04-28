@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LeadController;
 use App\Http\Resources\BlockResource;
 use App\Http\Resources\FlatTypeResource;
 use App\Http\Resources\ProjectResource;
@@ -204,3 +205,5 @@ Route::get('/project-transactions', function (Request $request) {
         $query->get()
     );
 });
+
+Route::post('/leads', [LeadController::class, 'store']);

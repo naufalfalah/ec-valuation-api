@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id');
             $table->string('name');
             $table->string('street')->nullable();
-            $table->string('mark_segment')->nullable();
+            $table->string('market_segment')->nullable();
             $table->string('x')->nullable();
             $table->string('y')->nullable();
             $table->string('batch')->nullable();

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('area')->nullable();
             $table->string('floor_range')->nullable();
             $table->string('no_of_units')->nullable();
-            $table->string('contact_date')->nullable();
+            $table->string('contract_date')->nullable();
             $table->string('type_of_sale')->nullable();
             $table->string('price')->nullable();
             $table->string('property_type')->nullable();

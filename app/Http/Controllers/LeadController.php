@@ -18,6 +18,36 @@ class LeadController extends Controller
     }
 
     /**
+     * Display a listing of leads.
+     *
+     * @group Leads
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id": 1,
+     *       "form_type": "condo",
+     *       "source_url": "https://example.com",
+     *       "ip": "192.168.1.1",
+     *       "name": "John Doe",
+     *       "phone_number": "123456789",
+     *       "email": "johndoe@example.com",
+     *       "created_at": "2025-04-30T00:00:00.000000Z"
+     *     }
+     *   ]
+     * }
+     */
+    public function index()
+    {
+        $leads = Lead::latest()->get();
+        return response()->json([
+            'success' => true,
+            'data' => $leads
+        ]);
+    }
+
+    /**
      * Store a new lead.
      *
      * @group Leads
@@ -117,6 +147,50 @@ class LeadController extends Controller
             return [
                 'error' => 'An error occurred while processing the lead.'
             ];
+        }
+    }
+
+    /**
+     * Display the specified lead.
+     *
+     * @group Leads
+     *
+     * @urlParam id integer required The ID of the lead. Example: 1
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id": 1,
+     *     "form_type": "condo",
+     *     "source_url": "https://example.com",
+     *     "ip": "192.168.1.1",
+     *     "name": "John Doe",
+     *     "phone_number": "123456789",
+     *     "email": "johndoe@example.com",
+     *     "project": "Project A",
+     *     "block": "10",
+     *     ...
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Lead not found."
+     * }
+     */
+    public function show($id)
+    {
+        try {
+            $leadWithDetails = $this->fetchLeadWithDetails($id);
+            return response()->json([
+                'success' => true,
+                'data' => $leadWithDetails
+            ]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Lead not found.'
+            ], 404);
         }
     }
 

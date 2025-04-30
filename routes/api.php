@@ -206,4 +206,6 @@ Route::get('/project-transactions', function (Request $request) {
     );
 });
 
+Route::get('/leads', [LeadController::class, 'index']);
 Route::post('/leads', [LeadController::class, 'store']);
+Route::get('/leads/{id}', [LeadController::class, 'show']);

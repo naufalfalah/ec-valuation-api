@@ -209,3 +209,12 @@ Route::get('/project-transactions', function (Request $request) {
 Route::get('/leads', [LeadController::class, 'index']);
 Route::post('/leads', [LeadController::class, 'store']);
 Route::get('/leads/{id}', [LeadController::class, 'show']);
+
+Route::prefix('/eligibility')->group(function () {
+    Route::prefix('/leads')->controller(LeadEligibilityController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/', 'store');
+        Route::get('/{id}', 'show');
+        Route::put('/{id}', 'update');
+    });
+});

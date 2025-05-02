@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lead_otps', function (Blueprint $table) {
+        Schema::create('eligibility_lead_otps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('lead_id');
             $table->string('phone_number');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EligibilityLead;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,7 @@ class LeadEligibilityController extends Controller
      */
     public function index()
     {
-        $leads = Lead::latest()->get();
+        $leads = EligibilityLead::latest()->get();
 
         return response()->json([
             'success' => true,
@@ -100,7 +101,7 @@ class LeadEligibilityController extends Controller
         ]);
 
         try {
-            $lead = Lead::create([
+            $lead = EligibilityLead::create([
                 'household' => $validated['household'],
                 'citizenship' => $validated['citizenship'],
                 'requirement' => $validated['requirement'],
@@ -194,7 +195,7 @@ class LeadEligibilityController extends Controller
     public function show($id)
     {
         try {
-            $lead = Lead::find($id);
+            $lead = EligibilityLead::find($id);
 
             return response()->json([
                 'success' => true,

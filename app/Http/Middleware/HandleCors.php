@@ -15,9 +15,20 @@ class HandleCors
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $allowedOrigins = [
+            'https://janicez728.sg-host.com',
+            'https://janicez732.sg-host.com',
+        ];
+
         // Set CORS headers
+        $origin = $request->headers->get('Origin');
+
         $response = $next($request);
-        $response->headers->set('Access-Control-Allow-Origin', 'https://janicez728.sg-host.com');
+
+        if (in_array($origin, $allowedOrigins)) {
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
+        }
+
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

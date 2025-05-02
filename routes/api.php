@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\LeadEligibilityController;
 use App\Http\Resources\BlockResource;
 use App\Http\Resources\FlatTypeResource;
 use App\Http\Resources\ProjectResource;

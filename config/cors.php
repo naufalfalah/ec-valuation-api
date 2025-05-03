@@ -17,7 +17,7 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie', '*'],
 
-    'allowed_methods' => ['*'],
+    'allowed_methods' => ['janicez728.sg-host.com', 'janicez732.sg-host.com'],
 
     'allowed_origins' => ['*'],
 

@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use App\Models\LeadDetail;
-use App\Services\DiscordService;
+use App\Services\LeadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
-    protected $discordService;
+    protected $leadService;
 
-    public function __construct(DiscordService $discordService)
+    public function __construct(LeadService $leadService)
     {
-        $this->discordService = $discordService;
+        $this->leadService = $leadService;
     }
 
     /**
@@ -132,7 +132,7 @@ class LeadController extends Controller
                 DB::commit();
 
                 $leadWithDetails = $this->fetchLeadWithDetails($lead->id);
-                $this->discordService->sendLeadToDiscord($leadWithDetails);
+                $this->leadService->sendLeadToDiscord($leadWithDetails);
 
                 $leadId = $lead->id;
             } else {

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use App\Models\LeadDetail;
+use App\Rules\NotFakeEmail;
+use App\Rules\NotFakeName;
+use App\Rules\NotFakePhone;
 use App\Services\LeadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -96,9 +99,9 @@ class LeadController extends Controller
             'form_type' => 'required|string',
             'source_url' => 'required|url',
             'ip' => 'required|ip',
-            'name' => 'required|string',
-            'phone_number' => 'required|string',
-            'email' => 'required|email',
+            'name' => ['required', 'string', new NotFakeName],
+            'phone_number' => ['required', 'string', new NotFakePhone],
+            'email' => ['required', 'email', new NotFakeEmail],
         ]);
 
         $phone = $validated['phone_number'];
